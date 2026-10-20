@@ -1,0 +1,5 @@
+numpy
+pandas
+openpyxl
+pyabf
+ipfx
