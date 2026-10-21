@@ -4,7 +4,7 @@ Python pipeline for protocol-specific analysis of ABF current-clamp recordings u
 
 ## What this repository does
 
-The analysis assumes a 11-sweep current-clamp protocol with a 1 s stimulus beginning at 90.6 ms. Current starts at 0 pA and increases by 30 pA per sweep (0–300 pA). The target sweep for the dedicated spike analysis is 150 pA.
+The analysis assumes a 11-sweeps current-clamp protocol with a 1 s stimulus beginning at 90.6 ms. Current starts at 0 pA and increases by 30 pA per sweep (0–300 pA). The target sweep for the dedicated spike analysis is 150 pA.
 
 The script extracts spike features with IPFX, computes ISIs, firing-rate/F-I information, rheobase-related summary values, and exports the results to one Excel workbook.
 
