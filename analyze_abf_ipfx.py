@@ -15,7 +15,7 @@ STIM_DURATION_S=1.0
 STIM_END_S=STIM_START_S+STIM_DURATION_S
 CURRENT_START_PA=0.0
 CURRENT_STEP_PA=30.0
-EXPECTED_SWEEPS=16
+EXPECTED_SWEEPS=11
 TARGET_CURRENT_PA=150.0
 
 def build_current_trace(t,current_pa):
@@ -210,7 +210,7 @@ def main():
     target_isis=isis[isis.current_pA==TARGET_CURRENT_PA].copy() if not isis.empty else pd.DataFrame()
     target_spikes_mean=summarize_target_spikes(target_spikes)
     target_first_spike=summarize_first_target_spike(target_spikes)
-    methods=pd.DataFrame({'item':['Spike extractor','ABF reader','Stimulus','Current protocol','fAHP-like definition','AHP duration definition'],'value':['IPFX SpikeFeatureExtractor','pyABF',f'{STIM_START_S}-{STIM_END_S} s','0-450 pA, +30 pA/sweep','IPFX fast_trough_v; labeled explicitly as fast trough','Time from IPFX fast_trough_t to first subsequent upward crossing of that spike threshold_v, limited to before next spike threshold or stimulus end']})
+    methods=pd.DataFrame({'item':['Spike extractor','ABF reader','Stimulus','Current protocol','fAHP-like definition','AHP duration definition'],'value':['IPFX SpikeFeatureExtractor','pyABF',f'{STIM_START_S}-{STIM_END_S} s','0-300 pA, +30 pA/sweep','IPFX fast_trough_v; labeled explicitly as fast trough','Time from IPFX fast_trough_t to first subsequent upward crossing of that spike threshold_v, limited to before next spike threshold or stimulus end']})
     xp=out/'ABF_analysis_IPFX.xlsx'
     with pd.ExcelWriter(xp,engine='openpyxl') as writer:
         for name,df in {'Cell_Summary':cells,'Sweep_Summary':sweeps,'All_Spikes_IPFX':spikes,'All_ISIs':isis,'FI_Curve':fi,'Sweep_150pA_Spikes':target_spikes,'150pA_Spike_Means':target_spikes_mean,'150pA_First_Spike':target_first_spike,'Sweep_150pA_ISIs':target_isis,'Methods':methods}.items():
